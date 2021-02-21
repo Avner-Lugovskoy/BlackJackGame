@@ -133,13 +133,21 @@ function sleep(ms) {
 async function dealerLogic() {
   blackjackGame["isStand"] = true;
 
-  while (DEALER["score"] < 16 && blackjackGame["isStand"] === true) {
+  while (DEALER["score"] < 16 && YOU["score"] < 16 && DEALER["score"] <= YOU["score"] && blackjackGame["isStand"] === true ) {
     let card = randomCard();
     showCard(card, DEALER);
     updateScore(card, DEALER);
     showScore(DEALER);
     await sleep(1000);
-  }
+  };
+
+   while (YOU["score"] > 15, YOU["score"] < 22 && DEALER["score"] < YOU["score"] && blackjackGame["isStand"] === true) {
+    let card = randomCard();
+    showCard(card, DEALER);
+    updateScore(card, DEALER);
+    showScore(DEALER);
+    await sleep(1000);
+  };
 
   blackjackGame["turnsOver"] = true;
   let winner = computeWinner();
